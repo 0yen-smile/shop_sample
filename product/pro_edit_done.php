@@ -29,10 +29,15 @@ else
         // データベース障害対策（エラートラップ）
         try
         {
-            $pro_code=$_POST['code'];
-            $pro_name=$_POST['name'];
-            $pro_price=$_POST['price'];
-            $pro_gazou_name_old=$_POST['gazou_name_old'];
+            //サニタイジング関数を呼び出し
+            require_once('../common/common.php');
+
+            // 前画面からデータを受け取り、変数にコピー
+            $post=sanitize($_POST);
+            $pro_code=$post['code'];
+            $pro_name=$post['name'];
+            $pro_price=$post['price'];
+            $pro_gazou_name_old=$post['gazou_name_old'];
             $pro_gazou_name=$_POST['gazou_name'];
             
             // 入力データに安全対策を施している（サニタイジング）

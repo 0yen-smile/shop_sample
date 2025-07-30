@@ -29,13 +29,14 @@ else
         // データベース障害対策（エラートラップ）
         try
         {
-            $staff_code = $_POST['code'];
-            $staff_name = $_POST['name'];
-            $staff_pass = $_POST['pass'];
-            
-            // 入力データの安全対策（サニタイジング）
-            $staff_name = htmlspecialchars($staff_name,ENT_QUOTES,'UTF-8');
-            $staff_pass = htmlspecialchars($staff_pass,ENT_QUOTES,'UTF-8');
+            //サニタイジング関数を呼び出し
+            require_once('../common/common.php');
+
+            // 前画面からデータを受け取り、変数にコピーし、サニタイジングを施している
+            $post=sanitize($_POST);          
+            $staff_code = $post['code'];
+            $staff_name = $post['name'];
+            $staff_pass = $post['pass'];
 
             // データベース接続
             $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';

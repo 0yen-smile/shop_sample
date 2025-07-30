@@ -28,12 +28,11 @@ else
         // データベース障害対策（エラートラップ）
         try
         {
-            $staff_name = $_POST['name'];
-            $staff_pass = $_POST['pass'];
-            
-            // 入力データの安全対策（サニタイジング）
-            $staff_name = htmlspecialchars($staff_name,ENT_QUOTES,'UTF-8');
-            $staff_pass = htmlspecialchars($staff_pass,ENT_QUOTES,'UTF-8');
+            //サニタイジング関数を呼び出し
+            require_once('../common/common.php');
+            $post=sanitize($_POST);
+            $staff_name = $post['name'];
+            $staff_pass = $post['pass'];
 
             // データベース接続
             $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';

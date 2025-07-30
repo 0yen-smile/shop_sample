@@ -25,17 +25,16 @@ else
     </head>
     <body>
         <?php
-        // 前画面からデータを受け取り、変数にコピー
-        $pro_code=$_POST['code'];
-        $pro_name=$_POST['name'];
-        $pro_price=$_POST['price'];
-        $pro_gazou_name_old=$_POST['gazou_name_old'];
-        $pro_gazou=$_FILES['gazou'];
+        //サニタイジング関数を呼び出し
+        require_once('../common/common.php');
 
-        // 入力データに安全対策を施している（サニタイジング）
-        $pro_code=htmlspecialchars($pro_code,ENT_QUOTES,'UTF-8');
-        $pro_name=htmlspecialchars($pro_name,ENT_QUOTES,'UTF-8');
-        $pro_price=htmlspecialchars($pro_price,ENT_QUOTES,'UTF-8');
+        // 前画面からデータを受け取り、変数にコピー
+        $post=sanitize($_POST);
+        $pro_code=$post['code'];
+        $pro_name=$post['name'];
+        $pro_price=$post['price'];
+        $pro_gazou_name_old=$post['gazou_name_old'];
+        $pro_gazou=$_FILES['gazou'];
         
         // 入力チェック（商品名）
         if($pro_name=='')

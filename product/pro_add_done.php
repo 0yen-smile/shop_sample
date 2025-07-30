@@ -29,13 +29,13 @@ else
         // データベース障害対策（エラートラップ）
         try
         {
-            $pro_name=$_POST['name'];
-            $pro_price=$_POST['price'];
-            $pro_gazou_name=$_POST['gazou_name'];
-            
-            // 入力データに安全対策を施している（サニタイジング）
-            $pro_name=htmlspecialchars($pro_name,ENT_QUOTES,'UTF-8');
-            $pro_price=htmlspecialchars($pro_price,ENT_QUOTES,'UTF-8');
+            //サニタイジング関数を呼び出し
+            require_once('../common/common.php');
+
+            $post=sanitize($_POST);
+            $pro_name=$post['name'];
+            $pro_price=$post['price'];
+            $pro_gazou_name=$post['gazou_name'];
 
             // データベース接続
             $dsn = 'mysql:dbname=shop;host=localhost;charset=utf8';

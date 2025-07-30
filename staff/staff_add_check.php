@@ -24,15 +24,15 @@ else
     </head>
     <body>
         <?php
-        // 前画面からデータを受け取り、変数にコピー
-        $staff_name=$_POST['name'];
-        $staff_pass=$_POST['pass'];
-        $staff_pass2=$_POST['pass2'];
-        
-        // 入力データに安全対策を施している（サニタイジング）
-        $staff_name=htmlspecialchars($staff_name,ENT_QUOTES,'UTF-8');
-        $staff_pass=htmlspecialchars($staff_pass,ENT_QUOTES,'UTF-8');
-        $staff_pass2=htmlspecialchars($staff_pass2,ENT_QUOTES,'UTF-8');
+
+        //サニタイジング関数を呼び出し
+        require_once('../common/common.php');
+
+        // 前画面からデータを受け取り、変数にコピーし、サニタイジングを施している
+        $post=sanitize($_POST);
+        $staff_name=$post['name'];
+        $staff_pass=$post['pass'];
+        $staff_pass2=$post['pass2'];
         
         // 入力チェック（スタッフ名）
         if($staff_name=='')

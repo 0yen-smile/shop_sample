@@ -2,11 +2,13 @@
 
 try
 {
-    $staff_code=$_POST['code'];
-    $staff_pass=$_POST['pass'];
+    //サニタイジング関数を呼び出し
+    require_once('../common/common.php');
 
-    $staff_code=htmlspecialchars($staff_code,ENT_QUOTES,'UTF-8');
-    $staff_pass=htmlspecialchars($staff_pass,ENT_QUOTES,'UTF-8');
+    // 前画面からデータを受け取り、変数にコピー
+    $post=sanitize($_POST);
+    $staff_code=$post['code'];
+    $staff_pass=$post['pass'];
 
     $staff_pass=md5($staff_pass);
 
