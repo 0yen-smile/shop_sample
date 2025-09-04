@@ -51,6 +51,7 @@ else
         {
             // データベースに障害が発生した場合、以下のプログラムが動く
             print 'ただいま障害により大変ご迷惑をおかけしております。';
+            print 'エラーが発生しました：' . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
             exit();
         }
         
